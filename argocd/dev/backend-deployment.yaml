@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-prisma
+  namespace: dev
+  labels:
+    app: prisma
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prisma
+      tier: backend
+  template:
+    metadata:
+      name: backend-prisma
+      labels:
+        app: prisma
+        tier: backend
+    spec:
+      containers:
+        - name: backend-prisma
+          image: jensdl/backend:dev.v22.11.11
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8081
+          env:
+            - name: MYSQL_HOST
+              value: 'mysql-service'
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-prisma-service
+  namespace: dev
+  labels:
+    app: prisma
+    tier: backend
+spec:
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+  selector:
+    app: prisma
+    tier: backend
+  template:
+    spec:
+      containers:
+        - image: jensdl/backend:dev.v22.11.11
