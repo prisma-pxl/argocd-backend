@@ -21,13 +21,13 @@ spec:
     spec:
       containers:
         - name: backend-prisma
-          image: jensdl/backend:dev.v22.11.21-09h24m
-          imagePullPolicy: Always
+          image: jensdl/backend:prod.v22.11.21-19h27m
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8081
           env:
-          - name: MYSQL_HOST
-            value: 'mysql-service'
+            - name: MYSQL_HOST
+              value: 'mysql-service'
 ---
 apiVersion: v1
 kind: Service
@@ -40,9 +40,13 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - protocol: TCP
-    port: 8085
-    targetPort: 8081
+    - protocol: TCP
+      port: 8085
+      targetPort: 8081
   selector:
     app: prisma
     tier: backend
+  template:
+    spec:
+      containers:
+        - image: jensdl/backend:prod.v22.11.21-19h27m
