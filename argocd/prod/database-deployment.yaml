@@ -5,10 +5,14 @@ metadata:
   namespace: prod
 spec:
   ports:
-  - port: 3306
+    - port: 3306
   selector:
     app: prisma
     tier: database
+  template:
+    spec:
+      containers:
+        - image: jensdl/mysql:prod.v22.11.21-19h27m
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -29,19 +33,65 @@ spec:
         tier: database
     spec:
       containers:
-      - image: jensdl/mysql:dev.v22.11.21-09h24m
-        imagePullPolicy: Always
-        name: mysql
-        env:
-          # Use secret in real usage
-        - name: MYSQL_DATABASE
-          value: 'prismaDb'
-        - name: MYSQL_ROOT_PASSWORD
-          value: 'admin'
-        - name: MYSQL_USER
-          value: 'user'
-        - name: MYSQL_PASSWORD
-          value: 'password'
-        ports:
-        - containerPort: 3306
+        - image: jensdl/mysql:prod.v22.11.21-19h27m
+          imagePullPolicy: IfNotPresent
           name: mysql
+          env:
+            # Use secret in real usage
+            - name: MYSQL_DATABASE
+              value: 'prismaDb'
+            - name: MYSQL_ROOT_PASSWORD
+              value: 'admin'
+            - name: MYSQL_USER
+              value: 'user'
+            - name: MYSQL_PASSWORD
+              value: 'password'
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-pv-claim
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv-volume
+  labels:
+    app: prisma
+spec:
+  storageClassName: manual
+  claimRef:
+    name: mysql-pv-claim
+    namespace: prod
+  capacity:
+    storage: 6Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/home/ubuntu/sql_data"
+  template:
+    spec:
+      containers:
+        - image: jensdl/mysql:prod.v22.11.21-19h27m
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+  namespace: prod
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 3Gi
+  template:
+    spec:
+      containers:
+        - image: jensdl/mysql:prod.v22.11.21-19h27m
