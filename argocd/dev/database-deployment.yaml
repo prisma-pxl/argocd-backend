@@ -12,7 +12,7 @@ spec:
   template:
     spec:
       containers:
-        - image: jensdl/mysql:dev.v22.11.22-13h04m
+        - image: jensdl/mysql:dev.v22.11.22-14h45m
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -33,7 +33,7 @@ spec:
         tier: database
     spec:
       containers:
-        - image: jensdl/mysql:dev.v22.11.22-13h04m
+        - image: jensdl/mysql:dev.v22.11.22-14h45m
           imagePullPolicy: IfNotPresent
           name: mysql
           env:
@@ -49,49 +49,3 @@ spec:
           ports:
             - containerPort: 3306
               name: mysql
-          volumeMounts:
-            - name: mysql-data
-              mountPath: /var/lib/mysql
-      volumes:
-        - name: mysql-data
-          persistentVolumeClaim:
-            claimName: mysql-pv-claim
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: mysql-pv-volume
-  labels:
-    app: prisma
-spec:
-  storageClassName: manual
-  claimRef:
-    name: mysql-pv-claim
-    namespace: dev
-  capacity:
-    storage: 6Gi
-  accessModes:
-    - ReadWriteMany
-  hostPath:
-    path: "/home/ubuntu/sql_data"
-  template:
-    spec:
-      containers:
-        - image: jensdl/mysql:dev.v22.11.22-13h04m
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mysql-pv-claim
-  namespace: dev
-spec:
-  storageClassName: manual
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 3Gi
-  template:
-    spec:
-      containers:
-        - image: jensdl/mysql:dev.v22.11.22-13h04m
