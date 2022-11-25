@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: backend-prisma
-          image: jensdl/backend:dev.v22.11.25-12h11m
+          image: jensdl/backend:dev.v22.11.25-16h34m
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8081
@@ -49,4 +49,4 @@ spec:
   template:
     spec:
       containers:
-        - image: jensdl/backend:dev.v22.11.25-12h11m
+        - image: jensdl/backend:dev.v22.11.25-16h34m
