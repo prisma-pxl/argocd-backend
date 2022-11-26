@@ -28,25 +28,3 @@ spec:
           env:
             - name: MYSQL_HOST
               value: 'mysql-service'
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: backend-prisma-service
-  namespace: dev
-  labels:
-    app: prisma
-    tier: backend
-spec:
-  type: LoadBalancer
-  ports:
-    - protocol: TCP
-      port: 8081
-      targetPort: 8081
-  selector:
-    app: prisma
-    tier: backend
-  template:
-    spec:
-      containers:
-        - image: jensdl/backend:dev.v22.11.26-17h54m
