@@ -7,7 +7,6 @@ metadata:
     app: prisma
     tier: backend
 spec:
-  
   ports:
     - protocol: TCP
       port: 8081
