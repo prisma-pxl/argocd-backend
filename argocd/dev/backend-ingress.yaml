@@ -4,8 +4,7 @@ metadata:
   name: backend-nginx-ingress
   namespace: dev
   annotations:
-    kubernetes.io/ingress.class: "nginx"
-    ingress.kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ingress.class: "traefik"
 spec:
   rules:
   - host: dev.backend.prisma.orcraft.net
@@ -18,7 +17,3 @@ spec:
             name: backend-prisma-service
             port:
               number: 8081
-  tls:
-    - hosts:
-        - dev.backend.prisma.orcraft.net
-      secretName: dev.backend.prisma-tls
