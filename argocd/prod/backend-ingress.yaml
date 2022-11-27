@@ -17,3 +17,7 @@ spec:
             name: backend-prisma-service
             port:
               number: 8081
+  tls:
+   - hosts:
+      - backend.prisma.orcraft.net
+    secretName: prod.backend.prisma-tls
