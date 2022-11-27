@@ -6,6 +6,9 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "traefik"
 spec:
+  buffering:
+    maxRequestBodyBytes: 5000000
+
   rules:
   - host: dev.backend.prisma.orcraft.net
     http:
