@@ -10,7 +10,7 @@ metadata:
       memrequestbodybytes: 629145600
 spec:
   rules:
-  - host: dev.backend.prisma.orcraft.net
+  - host: devbackend.prisma.orcraft.net
     http:
       paths:
       - path: /
