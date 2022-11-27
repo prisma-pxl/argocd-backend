@@ -10,9 +10,7 @@ spec:
   - host: dev.backend.prisma.orcraft.net
     http:
       paths:
-      - path: /
-        pathType: Prefix
-        backend:
+      - backend:
           service:
             name: backend-prisma-service
             port:
