@@ -21,6 +21,6 @@ spec:
             port:
               number: 8081
   tls:
-    - hosts:
+  - hosts:
       - devbackend.prisma.orcraft.net
-      secretName: devbackend.prisma-tls
+    secretName: devbackend.prisma-tls
