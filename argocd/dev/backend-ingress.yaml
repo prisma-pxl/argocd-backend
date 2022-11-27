@@ -9,12 +9,8 @@ metadata:
       maxrequestbodybytes: 314572800
       memrequestbodybytes: 629145600
 spec:
-  tls:
-    - hosts:
-      - devbackend.prisma.orcraft.net
-      secretName: devbackend.prisma-tls
   rules:
-  - host: devbackend.prisma.orcraft.net
+  - host: dev.backend.prisma.orcraft.net
     http:
       paths:
       - path: /
@@ -24,3 +20,7 @@ spec:
             name: backend-prisma-service
             port:
               number: 8081
+    tls:
+    - hosts:
+      - dev.backend.prisma.orcraft.net
+      secretName: dev.backend.prisma-tls
