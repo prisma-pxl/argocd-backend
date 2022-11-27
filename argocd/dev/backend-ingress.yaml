@@ -3,7 +3,6 @@ kind: Ingress
 metadata:
   name: backend-nginx-ingress
   namespace: dev
-  annotations:
 spec:
   rules:
   - host: dev.backend.prisma.orcraft.net
