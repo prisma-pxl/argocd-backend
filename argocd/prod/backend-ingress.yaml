@@ -20,4 +20,4 @@ spec:
   tls:
   - hosts:
       - backend.prisma.orcraft.net
-    secretName: prod.backend.prisma-tls
+    secretName: prodbackend.prisma-tls
