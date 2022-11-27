@@ -9,6 +9,10 @@ metadata:
       maxrequestbodybytes: 314572800
       memrequestbodybytes: 629145600
 spec:
+  tls:
+    - hosts:
+      - devbackend.prisma.orcraft.net
+      secretName: devbackend.prisma-tls
   rules:
   - host: devbackend.prisma.orcraft.net
     http:
