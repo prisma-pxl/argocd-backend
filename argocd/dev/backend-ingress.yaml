@@ -6,8 +6,8 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "traefik"
     traefik.ingress.kubernetes.io/buffering: |
-      maxrequestbodybytes: 31457280
-      memrequestbodybytes: 62914560
+      maxrequestbodybytes: 314572800
+      memrequestbodybytes: 629145600
 spec:
   rules:
   - host: dev.backend.prisma.orcraft.net
