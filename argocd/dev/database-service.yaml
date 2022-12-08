@@ -4,7 +4,7 @@ metadata:
   name: mysql-service
   namespace: dev
   annotations:
-    linkerd.io/inject: enabled
+    linkerd.io/inject: "enabled"
 spec:
   ports:
     - port: 3306
