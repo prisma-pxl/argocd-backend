@@ -35,7 +35,7 @@ spec:
               name: mysql
           volumeMounts:
             - name: smb-devdb
-              mountPath: "/var/lib/mysql/prismaDb"
+              mountPath: "/var/lib/mysql"
               readOnly: false
       volumes:
         - name: smb-devdb
