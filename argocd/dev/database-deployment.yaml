@@ -35,7 +35,7 @@ spec:
               name: mysql
           volumeMounts:
             - name: smb-devdb
-              mountPath: ""
+              mountPath: "/var/lib/mysql"
               readOnly: false
       volumes:
         - name: smb-devdb
