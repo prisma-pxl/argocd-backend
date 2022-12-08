@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-smb-devbe
+  name: smb-devbe
 spec:
   capacity:
     storage: 1Gi
@@ -34,5 +34,5 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  volumeName: pv-smb-devbe
+  volumeName: smb-devbe
   storageClassName: smb
