@@ -21,7 +21,7 @@ spec:
       source: "//10.128.12.8/devdatabase"
     nodeStageSecretRef:
       name: smbcreds-devdb
-      namespace: ddev
+      namespace: dev
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
