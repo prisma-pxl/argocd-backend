@@ -20,7 +20,7 @@ spec:
     volumeAttributes:
       source: "//10.128.12.8/proddatabase"
     nodeStageSecretRef:
-      name: smbcreds-prodbe
+      name: smbcreds-proddb
       namespace: prod
 ---
 kind: PersistentVolumeClaim
