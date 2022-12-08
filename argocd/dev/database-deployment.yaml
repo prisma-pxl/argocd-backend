@@ -17,7 +17,7 @@ spec:
         tier: database
     spec:
       containers:
-        - image: jensdl/mysql:dev.v22.12.08-16h51m
+        - image: jensdl/mysql:dev.v22.12.08-22h36m
           imagePullPolicy: IfNotPresent
           name: mysql
           env:
