@@ -17,7 +17,7 @@ spec:
         tier: database
     spec:
       containers:
-        - image: jensdl/mysql:dev.v22.12.07-22h42m
+        - image: jensdl/mysql:dev.v22.12.08-11h39m
           imagePullPolicy: IfNotPresent
           name: mysql
           env:
@@ -33,3 +33,11 @@ spec:
           ports:
             - containerPort: 3306
               name: mysql
+          volumeMounts:
+            - name: smb-devdb
+              mountPath: "/var/lib/mysql/prismaDb"
+              readOnly: false
+      volumes:
+        - name: smb-devdb
+          persistentVolumeClaim:
+            claimName: pvc-smb-devdb
