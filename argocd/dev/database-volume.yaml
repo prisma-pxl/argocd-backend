@@ -20,8 +20,8 @@ spec:
     volumeAttributes:
       source: "//10.128.12.8/devdatabase"
     nodeStageSecretRef:
-      name: smbcreds
-      namespace: default
+      name: smbcreds-devdb
+      namespace: ddev
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
