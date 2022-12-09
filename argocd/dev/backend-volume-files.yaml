@@ -34,5 +34,5 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  volumeName: smb-devbe
+  volumeName: smb-devbe-files
   storageClassName: smb

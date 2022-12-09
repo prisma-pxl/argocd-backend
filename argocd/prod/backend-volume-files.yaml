@@ -34,5 +34,5 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  volumeName: smb-prodbe
+  volumeName: smb-prodbe-files
   storageClassName: smb
