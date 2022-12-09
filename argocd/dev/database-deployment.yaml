@@ -40,4 +40,4 @@ spec:
       volumes:
         - name: local-devdb
           persistentVolumeClaim:
-            claimName: pvc-local-proddb
+            claimName: pvc-local-devdb
