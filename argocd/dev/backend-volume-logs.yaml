@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: smb-devbe
+  name: smb-devbe-logs
 spec:
   capacity:
     storage: 1Gi
@@ -16,9 +16,9 @@ spec:
   csi:
     driver: smb.csi.k8s.io
     readOnly: false
-    volumeHandle: test_pv_credentails # make sure it's a unique id in the cluster
+    volumeHandle: backend_volume_logs_dev # make sure it's a unique id in the cluster
     volumeAttributes:
-      source: "//10.128.12.8/devbackend"
+      source: "//10.128.12.8/devbackend/logs/"
     nodeStageSecretRef:
       name: smbcreds-devbe
       namespace: dev
@@ -26,7 +26,7 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: pvc-smb-devbe
+  name: pvc-smb-devbe-logs
   namespace: dev
 spec:
   accessModes:
