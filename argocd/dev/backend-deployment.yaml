@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: backend-prisma
-          image: jensdl/backend:dev.v22.12.08-22h36m
+          image: jensdl/backend:dev.v22.12.09-16h20m
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8081
@@ -29,10 +29,16 @@ spec:
             - name: MYSQL_HOST
               value: 'mysql-service'
           volumeMounts:
-            - name: smb-devbe
+            - name: smb-devbe-logs
               mountPath: "/logs"
               readOnly: false
+            - name: smb-devbe-files
+              mountPath: "/.data"
+              readOnly: false
       volumes:
-        - name: smb-devbe
+        - name: smb-devbe-logs
           persistentVolumeClaim:
-            claimName: pvc-smb-devbe
+            claimName: pvc-smb-devbe-logs
+        - name: smb-devbe-files
+          persistentVolumeClaim:
+            claimName: pvc-smb-devbe-files
