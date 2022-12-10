@@ -28,3 +28,17 @@ spec:
           env:
             - name: MYSQL_HOST
               value: 'mysql-service'
+          volumeMounts:
+            - name: smb-prodbe-logs
+              mountPath: "/logs"
+              readOnly: false
+            - name: smb-prodbe-files
+              mountPath: "/.data"
+              readOnly: false
+      volumes:
+        - name: smb-prodbe-logs
+          persistentVolumeClaim:
+            claimName: pvc-smb-prodbe-logs
+        - name: smb-prodbe-files
+          persistentVolumeClaim:
+            claimName: pvc-smb-prodbe-files

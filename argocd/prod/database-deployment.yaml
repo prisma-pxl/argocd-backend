@@ -34,10 +34,10 @@ spec:
             - containerPort: 3306
               name: mysql
           volumeMounts:
-            - name: nfs-proddb
+            - name: nfs-devdb
               mountPath: "/var/lib/mysql/"
               readOnly: false
       volumes:
-        - name: nfs-proddb
+        - name: nfs-devdb
           persistentVolumeClaim:
             claimName: pvc-nfs-proddb
