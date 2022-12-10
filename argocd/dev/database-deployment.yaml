@@ -33,11 +33,11 @@ spec:
           ports:
             - containerPort: 3306
               name: mysql
-          #volumeMounts:
-          #  - name: local-devdb
-          #    mountPath: "/var/lib/mysql/"
-          #    readOnly: false
-      #volumes:
-      #  - name: local-devdb
-      #    persistentVolumeClaim:
-      #      claimName: pvc-local-devdb
+          volumeMounts:
+            - name: local-devdb
+              mountPath: "/var/lib/mysql/"
+              readOnly: false
+      volumes:
+        - name: local-devdb
+          persistentVolumeClaim:
+            claimName: pvc-local-devdb
