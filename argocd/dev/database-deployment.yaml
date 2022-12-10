@@ -34,7 +34,7 @@ spec:
             - containerPort: 3306
               name: mysql
           volumeMounts:
-            - name: local-devdb
+            - name: nfs-devdb
               mountPath: "/var/lib/mysql/"
               readOnly: false
       volumes:
