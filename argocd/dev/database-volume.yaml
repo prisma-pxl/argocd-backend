@@ -10,8 +10,9 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   accessModes:
     - ReadWriteMany
-  hostPath:
-    path: "/mnt/nfs_mount/sql_data/data"
+  nfs:
+    server: 10.128.12.8
+    path: "/mnt/K3S/Prisma/dev/database/sql_data/data/"
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
