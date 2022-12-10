@@ -11,7 +11,7 @@ spec:
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: "/mnt/nfs_mount//data"
+    path: "/mnt/nfs_mount/sql_data/data"
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
