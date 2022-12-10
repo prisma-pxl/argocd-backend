@@ -38,6 +38,6 @@ spec:
               mountPath: "/var/lib/mysql/"
               readOnly: false
       volumes:
-        - name: local-devdb
+        - name: nfs-devdb
           persistentVolumeClaim:
-            claimName: pvc-local-devdb
+            claimName: pvc-nfs-devdb
