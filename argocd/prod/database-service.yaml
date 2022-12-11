@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: mysql-service
   namespace: prod
+  annotations:
+    linkerd.io/inject: "enabled"
 spec:
   ports:
     - port: 3306
