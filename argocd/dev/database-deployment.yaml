@@ -15,11 +15,9 @@ spec:
       labels:
         app: prisma
         tier: database
-      annotations:
-        linkerd.io/inject: enabled
     spec:
       containers:
-        - image: jensdl/mysql:dev.v22.12.10-16h05m
+        - image: jensdl/mysql:dev.v22.12.13-13h58m
           imagePullPolicy: IfNotPresent
           name: mysql
           env:
