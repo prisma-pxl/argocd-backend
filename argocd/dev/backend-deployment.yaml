@@ -18,18 +18,16 @@ spec:
       labels:
         app: prisma
         tier: backend
-      annotations:
-        linkerd.io/inject: enabled
     spec:
       containers:
         - name: backend-prisma
-          #image: jensdl/backend:dev.v22.12.10-16h05m
-          image: jensdl/testimage:backend
+          image: jensdl/backend:dev.v22.12.13-13h58m
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8081
           env:
             #- name: MYSQL_HOST
+
             #  value: 'mysql-service'
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:mysql://mysql-service/prismaDb?"
