@@ -18,10 +18,12 @@ spec:
       labels:
         app: prisma
         tier: backend
+      annotations:
+        linkerd.io/inject: enabled
     spec:
       containers:
         - name: backend-prisma
-          image: jensdl/backend:dev.v22.12.13-13h58m
+          image: jensdl/backend:dev.v22.12.13-14h48m
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8081
