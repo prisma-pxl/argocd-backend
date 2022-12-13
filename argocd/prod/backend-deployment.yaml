@@ -24,6 +24,17 @@ spec:
       containers:
         - name: backend-prisma
           image: jensdl/backend:dev.v22.12.09-16h20m
+          env:
+          - name: SPRING_DATASOURCE_URL
+            value: "jdbc:mysql://${MYSQL_HOST}/prismaDb?"
+          - name: SPRING_DATASOURCE_USERNAME
+            value: "user"
+          - name: SPRING_DATASOURCE_PASSWORD
+            value: "password1"
+          - name: SPRING_MAIL_USERNAME
+            value: "prisma.pxl@gmail.com"
+          - name: SPRING_MAIL_PASSWORD
+            value: "axtyodwkimshxrim"
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8081
