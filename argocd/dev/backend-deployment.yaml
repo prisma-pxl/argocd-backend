@@ -25,15 +25,15 @@ spec:
         - name: backend-prisma
           image: jensdl/backend:dev.v22.12.10-16h05m
           env:
-          - name: SPRING_DATASOURCE_URL
+          - name: DATASOURCE_URL
             value: "jdbc:mysql://${MYSQL_HOST}/prismaDb?"
-          - name: SPRING_DATASOURCE_USERNAME
+          - name: DATASOURCE_USERNAME
             value: "user"
-          - name: SPRING_DATASOURCE_PASSWORD
+          - name: DATASOURCE_PASSWORD
             value: "password1"
-          - name: SPRING_MAIL_USERNAME
+          - name: MAIL_USERNAME
             value: "prisma.pxl@gmail.com"
-          - name: SPRING_MAIL_PASSWORD
+          - name: MAIL_PASSWORD
             value: "axtyodwkimshxrim"
           imagePullPolicy: IfNotPresent
           ports:
