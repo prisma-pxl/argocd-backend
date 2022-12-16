@@ -7,7 +7,7 @@ metadata:
     app: prisma
     tier: backend
   annotations:
-    ad.datadoghq.com/backend-prisma.logs: '[{"source": "backend-prisma","service": "backend-prisma","tags": ["env:prisma"]}]'
+    ad.datadoghq.com/backend-prisma.logs: '[{"source": "backend-prisma","service": "backend-prisma","tags": ["env:dev"]}]'
 spec:
   replicas: 1
   selector:
