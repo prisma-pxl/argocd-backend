@@ -19,31 +19,19 @@ spec:
         linkerd.io/inject: enabled
     spec:
       containers:
-        - image: jensdl/mysql:dev.v22.12.08-12h17m
+        - image: jensdl/mysql:prod.v22.12.16
           imagePullPolicy: IfNotPresent
           name: mysql
           env:
             # Use secret in real usage
             - name: MYSQL_DATABASE
-              valueFrom:
-                secretKeyRef:
-                  name: db-credentials
-                  key: database
+              value: 'prismaDb'
             - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: db-credentials
-                  key: root_password
+              value: 'admin'
             - name: MYSQL_USER
-              valueFrom:
-                secretKeyRef:
-                  name: db-credentials
-                  key: user
+              value: 'user'
             - name: MYSQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: db-credentials
-                  key: user_password
+              value: 'password'
           ports:
             - containerPort: 3306
               name: mysql
