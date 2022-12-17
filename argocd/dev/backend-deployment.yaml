@@ -37,10 +37,7 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8081
-             - port: 8126
-               targetPort: 8126
-               protocol: TCP
-               name: datadog
+            - containerPort: 8126
           env:
             #- name: MYSQL_HOST
 
