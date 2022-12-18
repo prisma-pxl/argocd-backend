@@ -19,7 +19,7 @@ spec:
         linkerd.io/inject: enabled
     spec:
       containers:
-        - image: jensdl/mysql:dev.v22.12.17-18h18m
+        - image: jensdl/mysql:dev.v22.12.18-10h36m
           imagePullPolicy: IfNotPresent
           name: mysql
           env:
