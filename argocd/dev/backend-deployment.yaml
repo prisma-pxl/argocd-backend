@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -33,11 +34,10 @@ spec:
     spec:
       containers:
         - name: backend-prisma
-          image: jensdl/testimage:backend2
+          image: jensdl/backend:dev.v22.12.18-10h36m
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8081
-            - containerPort: 8126
           env:
             #- name: MYSQL_HOST
 
@@ -45,13 +45,25 @@ spec:
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:mysql://mysql-service/prismaDb?"
             - name: SPRING_DATASOURCE_USERNAME
-              value: "user"
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: user
             - name: SPRING_DATASOURCE_PASSWORD
-              value: "password"
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: user_password
             - name: SPRING_MAIL_USERNAME
-              value: "prisma.pxl@gmail.com"
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: email_username
             - name: SPRING_MAIL_PASSWORD
-              value: "axtyodwkimshxrim"
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: email_password
             - name: DD_PROFILING_ENABLED
               value: "true"
             - name: DD_LOGS_INJECTION
