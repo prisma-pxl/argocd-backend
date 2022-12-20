@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: backend-nginx-ingress
+  namespace: dev
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/buffering: |
+      maxrequestbodybytes: 314572800
+      memrequestbodybytes: 629145600
+spec:
+  rules:
+  - host: devbackend.prisma.orcraft.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-prisma-service
+            port:
+              number: 8081
+  tls:
+  - hosts:
+      - devbackend.prisma.orcraft.net
+    secretName: devbackend.prisma-tls

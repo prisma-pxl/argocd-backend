@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: backend-nginx-ingress
+  namespace: prod
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  rules:
+  - host: prodbackend.prisma.orcraft.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-prisma-service
+            port:
+              number: 8081
+  tls:
+  - hosts:
+      - prodbackend.prisma.orcraft.net
+    secretName: prodbackend.prisma-tls
