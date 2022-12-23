@@ -38,7 +38,7 @@ spec:
           imagePullPolicy: IfNotPresent
           readinessProbe:
             httpGet:
-              path: /actuator/health
+              path: /actuator
               port: 8081
             failureThreshold: 1
             periodSeconds: 60
