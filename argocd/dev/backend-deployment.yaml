@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
         - name: backend-prisma
-          image: jensdl/backend:dev.v22.12.23-13h19m
+          image: jensdl/backend:dev.v22.12.23-13h25m
           imagePullPolicy: IfNotPresent
           readinessProbe:
             httpGet:
