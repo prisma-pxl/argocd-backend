@@ -39,7 +39,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /actuator/health
-              port: readiness-port
+              port: containerPort
             failureThreshold: 1
             periodSeconds: 60
           ports:
