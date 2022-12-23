@@ -17,7 +17,7 @@ spec:
   strategy:
   type: RollingUpdate
   rollingUpdate:
-    intervalSeconds: 10
+    intervalSeconds: 20
   selector:
     matchLabels:
       app: prisma
