@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6,6 +7,11 @@ metadata:
   labels:
     app: prisma
     tier: backend
+    tags.datadoghq.com/env: prod
+    tags.datadoghq.com/service: backend-prisma
+    tags.datadoghq.com/version: latest
+  annotations:
+    ad.datadoghq.com/backend-prisma.logs: '[{"source": "backend-prisma","service": "backend-prisma","tags": ["env:prod"]}]'
 spec:
   replicas: 1
   selector:
@@ -18,13 +24,24 @@ spec:
       labels:
         app: prisma
         tier: backend
+        tags.datadoghq.com/env: prod
+        tags.datadoghq.com/service: backend-prisma
+        tags.datadoghq.com/version: latest
+        admission.datadoghq.com/enabled: "true"
       annotations:
         linkerd.io/inject: enabled
+        admission.datadoghq.com/java-lib.version: v1.2.0
     spec:
       containers:
         - name: backend-prisma
-          image: jensdl/backend:prod.v22.12.16
+          image: jensdl/backend:prod.v22.12.23
           imagePullPolicy: IfNotPresent
+          readinessProbe:
+            httpGet:
+              path: /actuator
+              port: 8081
+            failureThreshold: 30
+            periodSeconds: 10
           ports:
             - containerPort: 8081
           env:
@@ -34,13 +51,33 @@ spec:
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:mysql://mysql-service/prismaDb?"
             - name: SPRING_DATASOURCE_USERNAME
-              value: "user"
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: user
             - name: SPRING_DATASOURCE_PASSWORD
-              value: "password"
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: user_password
             - name: SPRING_MAIL_USERNAME
-              value: "prisma.pxl@gmail.com"
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: email_username
             - name: SPRING_MAIL_PASSWORD
-              value: "axtyodwkimshxrim"
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: email_password
+            - name: DD_PROFILING_ENABLED
+              value: "true"
+            - name: DD_LOGS_INJECTION
+              value: "true"
+            - name: DD_APPSEC_ENABLED
+              value: "true"
+            - name: DD_TRACE_SAMPLE_RATE
+              value: "1"
           volumeMounts:
             - name: smb-prodbe-logs
               mountPath: "/logs"
