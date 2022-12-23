@@ -40,8 +40,8 @@ spec:
             httpGet:
               path: /actuator
               port: 8081
-            failureThreshold: 1
-            periodSeconds: 60
+            failureThreshold: 30
+            periodSeconds: 10
           ports:
             - containerPort: 8081
           env:
