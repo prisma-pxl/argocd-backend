@@ -72,8 +72,6 @@ spec:
               value: "true"
             - name: DD_TRACE_SAMPLE_RATE
               value: "1"
-            - name: datadogapikey
-              value: "73372f6404660735ad434768a3d49991"
           volumeMounts:
             - name: smb-devbe-logs
               mountPath: "/logs"
