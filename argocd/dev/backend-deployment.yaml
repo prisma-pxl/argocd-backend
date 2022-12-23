@@ -16,7 +16,7 @@ spec:
   replicas: 1
   type: RollingUpdate
   rollingUpdate:
-    timeoutSeconds: 10
+    intervalSeconds: 10
   selector:
     matchLabels:
       app: prisma
